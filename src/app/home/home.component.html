@@ -1,0 +1,45 @@
+<div class="project-list-container">
+	<div class="heading">
+	  <h3>Projects</h3>
+	</div>
+  
+	<!-- Loading Indicator -->
+	<div *ngIf="isLoading">Loading projects...</div>
+  
+	<!-- Projects Table -->
+	<table *ngIf="!isLoading">
+	  <thead>
+		<tr>
+		  <th>Project Name</th>
+		  <th>Description</th>
+		  <th>Details</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr *ngFor="let project of projects$ | async; trackBy: trackByProjectId">
+		  <td>{{ project.name }}</td>
+		  <td>{{ project.description }}</td>
+		  <td>
+			<button (click)="viewProjectDetails(project)">View Details</button>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
+  
+	<div class="button-container">
+	  <button (click)="addNewProject()">Add New Project</button>
+	</div>
+  
+	<!-- Display the Project Form -->
+	<div *ngIf="showProjectForm"> <!-- Show ProjectFormComponent conditionally -->
+	  <app-project-form (close)="handleProjectFormClose()"></app-project-form>
+	</div>
+  
+	<!--<div *ngIf="showProjectDetails">
+	  <app-project (closePanel)="handleProjectModalClose($event)" 
+	        [selectedProject]="selectedProject">
+	  </app-project>
+	</div>-->
+	*
+  </div>
+  

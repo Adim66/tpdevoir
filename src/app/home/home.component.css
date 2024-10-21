@@ -1,0 +1,121 @@
+.project-list-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .heading h3 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  table thead {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  table th,
+  table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table th {
+    font-weight: bold;
+  }
+  
+  table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    background-color: #00408d;
+  }
+  
+  .button-container {
+    text-align: right;
+  }
+  
+  .button-container button {
+    background-color: #28a745;
+  }
+  
+  .button-container button:hover {
+    background-color: #218838;
+  }
+  
+  .button-container button:active {
+    background-color: #1e7e34;
+  }
+  
+  @media (max-width: 768px) {
+    table thead,
+    table tbody,
+    table th,
+    table td,
+    table tr {
+      display: block;
+    }
+  
+    table th {
+      background-color: transparent;
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+  
+    table tr {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    table td {
+      border-bottom: 1px solid #ddd;
+      padding-left: 50%;
+      position: relative;
+    }
+  
+    table td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+  
