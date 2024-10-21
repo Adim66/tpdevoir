@@ -44,43 +44,48 @@ export class ProjectFormComponent {
     this.tasks.removeAt(index);
   }
 
-  onSubmit() {
-    console.log("hamdouuuuuuuuuuuuuullllllllllllaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhhhhhh");
-  
-    if (this.projectForm.valid) {
-      const newProject: Project = this.projectForm.value;
-  
-      console.log('New Project:', newProject);
-      
-      // First, add the project
-      this.projectService.addProject(newProject).subscribe({
-        next: (response) => {
-          console.log('Project added:', response);
-          
-          // Now, add the tasks associated with this project
-          newProject.tasks.forEach((task: Task) => {
-          
-            // Set the project ID for each task (assuming the project ID comes from the response)
-            task.project_id = response.id; // Assuming `response.id` gives the new project ID
-            console.log(newProject.tasks[0]);
-            // Add the task to the database
-            this.taskService.addTask(task).subscribe({
-              next: (taskResponse) => {
-                console.log('Task added:', taskResponse);
-              },
-              error: (taskError) => {
-                console.error('Error adding task:', taskError);
-              }
+    onSubmit() {
+      console.log("hamdouuuuuuuuuuuuuullllllllllllaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhhhhhh");
+    
+      if (this.projectForm.valid) {
+        const newProject: Project = this.projectForm.value;
+    
+        console.log('New Project:', newProject);
+        
+        // First, add the project
+        this.projectService.addProject(newProject).subscribe({
+          next: (response) => {
+            console.log('Project added:', response);
+            
+            // Fetch the complete project details after creation
+            this.projectService.getProjectById(response.id).subscribe((fullProject: Project) => {
+              // Now, add the tasks associated with this project
+              newProject.tasks.forEach((task: Task) => {
+                // Set the complete project object for each task
+                task.project = fullProject; // Assign the complete project object
+                console.log(newProject.tasks[0]);
+    
+                // Add the task to the database
+                this.taskService.addTask(task).subscribe({
+                  next: (taskResponse) => {
+                    console.log('Task added:', taskResponse);
+                  },
+                  error: (taskError) => {
+                    console.error('Error adding task:', taskError);
+                  }
+                });
+              });
+    
+              // Close the form or reset it
+              this.close.emit(); // Emit close event to the parent (if using event emitter)
+            }, (error) => {
+              console.error('Error fetching full project details:', error);
             });
-          });
-  
-          // Close the form or reset it
-          this.close.emit(); // Emit close event to the parent (if using event emitter)
-        },
-        error: (error) => {
-          console.error('Error adding project:', error);
-        },
-      });
+          },
+          error: (error) => {
+            console.error('Error adding project:', error);
+          },
+        });
+      }
     }
   }
-}

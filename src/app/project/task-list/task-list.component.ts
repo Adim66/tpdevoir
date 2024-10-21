@@ -10,7 +10,7 @@ const emptyTask = {
   description: '',
   dueDate: '',
   completed: false,
-  project_id: 1,
+  project: null,
   id: 0,
 };
 
