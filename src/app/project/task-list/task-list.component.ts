@@ -5,11 +5,12 @@ import { Task } from '../../task.model';
 import { TaskService } from '../../task.service';
 import { TaskFormComponent } from '../task-form/task-form.component';
 
+// Mise à jour de la tâche vide pour inclure price et imageUrl
 const emptyTask = {
   name: '',
   description: '',
-  dueDate: '',
-  completed: false,
+  price: 0,  // Ajout du champ price
+  imageUrl: '',  // Ajout du champ imageUrl
   project: null,
   id: 0,
 };
@@ -17,9 +18,9 @@ const emptyTask = {
 @Component({
   selector: 'app-task-list',
   standalone: true,
-  imports: [DatePipe, TaskFormComponent, AsyncPipe,CommonModule],
+  imports: [DatePipe, TaskFormComponent, AsyncPipe, CommonModule],
   templateUrl: './task-list.component.html',
-  styleUrl: './task-list.component.css',
+  styleUrls: ['./task-list.component.css'],
 })
 export class TaskListComponent {
   tasks: Task[] = [];
@@ -38,28 +39,7 @@ export class TaskListComponent {
     this.tasks$ = this.taskService.getTasks();
   }
 
-  handleCheckbox(id: number) {
-    // Récupérer la tâche par son ID à partir du service
-    this.taskService.getTaskById(id).subscribe((task) => {
-      // Inverser la valeur de completed
-      task.completed = !task.completed;
-      
-      // Mettre à jour la tâche via le service
-      this.taskService.updateTask(task).subscribe(
-        (updatedTask) => {
-          console.log('Task updated successfully:', updatedTask);
-          this.updateTasks();
-        },
-        (error) => {
-          console.error('Error updating task:', error);
-        }
-      );
-    }, 
-    (error) => {
-      console.error('Error fetching task by id:', error);
-    });
-    
-  }  
+
   deleteTask(id: number) {
     this.taskService.deleteTask(id).subscribe(() => {
       this.updateTasks();
@@ -67,12 +47,14 @@ export class TaskListComponent {
   }
 
   updateTask(task: Task) {
-    this.selectedTask = task;
+    // Sélectionner la tâche pour l'édition, y compris les nouveaux champs
+    this.selectedTask = { ...task };  // Récupère également price et imageUrl
     this.formType = 'UPDATE';
     this.showModal = true;
   }
 
   addNewTask() {
+    // Utiliser la tâche vide avec les nouveaux champs pour la création
     this.selectedTask = emptyTask;
     this.formType = 'CREATE';
     this.showModal = true;

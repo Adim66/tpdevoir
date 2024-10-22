@@ -51,7 +51,8 @@ export class ProjectFormComponent {
         const newProject: Project = this.projectForm.value;
     
         console.log('New Project:', newProject);
-        
+        console.log("hamdouuuuuuuuuuuuuullllllllllllaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhhhhhh");
+    
         // First, add the project
         this.projectService.addProject(newProject).subscribe({
           next: (response) => {

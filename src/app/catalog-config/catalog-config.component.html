@@ -1,0 +1,79 @@
+<app-admin-app-header></app-admin-app-header>
+<div class="project-list-container">
+  <div class="heading">
+    <h3>Projects</h3>
+  </div>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading">Loading projects...</div>
+
+  <!-- Projects Table -->
+  <table *ngIf="!isLoading">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects$ | async; trackBy: trackByProjectId">
+        <td>{{ project.name }}</td>
+        <td>{{ project.description }}</td>
+        <td>
+          <button (click)="viewProjectDetails(project)">View Details</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <button (click)="addNewProject()">Add New Project</button>
+  </div>
+
+  <!-- Display the Project Form -->
+  <div *ngIf="showProjectForm">
+    <app-project-form (close)="handleProjectFormClose()"></app-project-form>
+  </div>
+
+  <!-- Détails du projet sélectionné -->
+  <div *ngIf="selectedProject" class="project-details">
+    <h3>Détails du Projet: {{ selectedProject.name }}</h3>
+    <p>Description: {{ selectedProject.description }}</p>
+    
+    <h4>Tâches associées:</h4>
+    <ul>
+      <li *ngFor="let task of selectedProject.tasks">
+        {{ task.name }} - {{ task.description }} - Prix: {{ task.price }}
+        <button (click)="editTask(task)">Modifier</button>
+        <button (click)="deleteTask(task.id)">Supprimer</button>
+      </li>
+    </ul>
+
+    <!-- Formulaire d'ajout ou <div class="task-form" *ngIf="showTaskForm">
+      <h4>{{ taskToEdit ? 'Modifier la Tâche' : 'Ajouter une Tâche' }}</h4>
+      <div>
+        <label for="task-name">Nom de la Tâche:</label>
+        <input id="task-name" [(ngModel)]="newTask.name" required />
+      </div>
+
+      <div>
+        <label for="task-description">Description:</label>
+        <textarea id="task-description" [(ngModel)]="newTask.description" required></textarea>
+      </div>
+
+      <div>
+        <label for="task-price">Prix:</label>
+        <input id="task-price" type="number" [(ngModel)]="newTask.price" required />
+      </div>
+
+      <div class="button-container">
+        <button (click)="taskToEdit ? handleTaskUpdate(newTask) : addTask()">
+          {{ taskToEdit ? 'Mettre à Jour' : 'Ajouter' }}
+        </button>
+        <button (click)="resetTaskForm()">Annuler</button>
+      </div>
+    </div>de modification de tâche -->
+    
+  </div>
+</div>

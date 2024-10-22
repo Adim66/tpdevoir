@@ -1,121 +1,62 @@
-.project-list-container {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
+.project-container {
+	max-width: 1250px; /* Set the maximum width for the container */
+	margin: 0 auto; /* Center the container horizontally */
+}
+
+@media (max-width: 768px) {
+	.project-container {
+			padding: 15px; /* Adjust padding for smaller screens */
+	}
+}
+.shop-description {
+    max-width: 800px; /* Limiter la largeur de la description */
+    margin: 20px auto; /* Centrer la description */
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .heading h3 {
-    font-size: 24px;
-    color: #333;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  table thead {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  table th,
-  table td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  table th {
-    font-weight: bold;
-  }
-  
-  table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:focus {
-    outline: none;
-  }
-  
-  button:active {
-    background-color: #00408d;
-  }
-  
-  .button-container {
-    text-align: right;
-  }
-  
-  .button-container button {
-    background-color: #28a745;
-  }
-  
-  .button-container button:hover {
-    background-color: #218838;
-  }
-  
-  .button-container button:active {
-    background-color: #1e7e34;
-  }
-  
-  @media (max-width: 768px) {
-    table thead,
-    table tbody,
-    table th,
-    table td,
-    table tr {
-      display: block;
-    }
-  
-    table th {
-      background-color: transparent;
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-  
-    table tr {
-      margin-bottom: 20px;
-      border-bottom: 1px solid #ddd;
-    }
-  
-    table td {
-      border-bottom: 1px solid #ddd;
-      padding-left: 50%;
-      position: relative;
-    }
-  
-    table td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 10px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-  }
-  
+    background-color: #f2f2f2; /* Couleur de fond claire */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour effet de profondeur */
+}
+
+.shop-description h1 {
+    text-align: center; /* Centrer le titre */
+    color: #333; /* Couleur du texte */
+}
+
+.shop-description p {
+    line-height: 1.6; /* Améliorer la lisibilité */
+    color: #555; /* Couleur du texte */
+}
+
+.customer-reviews {
+    max-width: 800px; /* Limiter la largeur des avis */
+    margin: 20px auto; /* Centrer les avis */
+    padding: 20px;
+    background-color: #fff; /* Couleur de fond blanche */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour effet de profondeur */
+}
+
+.customer-reviews h2 {
+    text-align: center; /* Centrer le titre des avis */
+    color: #007bff; /* Couleur bleue pour le titre */
+}
+
+.review {
+    border-bottom: 1px solid #eee; /* Ligne de séparation entre les avis */
+    padding: 10px 0; /* Espacement vertical */
+}
+
+.review:last-child {
+    border-bottom: none; /* Retirer la ligne de séparation pour le dernier avis */
+}
+
+.review h4 {
+    margin: 0; /* Retirer le marge */
+    color: #333; /* Couleur du nom du client */
+}
+
+.review p {
+    color: #555; /* Couleur du texte de l'avis */
+    margin: 5px 0 0; /* Marges pour espacer le texte */
+}
+

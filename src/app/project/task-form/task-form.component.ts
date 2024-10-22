@@ -43,14 +43,10 @@ export class TaskFormComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['currentTask'] && changes['currentTask'].currentValue) {
       const task = changes['currentTask'].currentValue as Task;
-
-      const dueDateFormatted = task.dueDate
-        ? new Date(task.dueDate).toISOString().split('T')[0]
-        : '';
-
+  
+      // On retire la gestion de 'dueDate' car elle n'existe plus
       this.taskForm.patchValue({
-        ...task,
-        dueDate: dueDateFormatted,
+        ...task
       });
     }
   }

@@ -26,7 +26,7 @@ export class TaskService {
   updateTask(newTask: Task) {
     return this.http.put(`${BASE_URL}/tasks/${newTask.id}`, {
       ...newTask,
-      project: null,
+     
     });
   }
 
