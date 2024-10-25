@@ -1,0 +1,8 @@
+main {
+    flex-grow: 1; /* Take up the remaining space */
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6e4d9;
+    background-image: url(https://mariemzaouali.github.io/assets/img/pattern.png);
+    margin: 0; /* Remove any margin that may disrupt the layout */
+}
